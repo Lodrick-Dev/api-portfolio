@@ -35,10 +35,10 @@ router.post(
   updateProfilController.addFirstImgAws
 );
 
-router.delete(
-  "/delete/objet/aws/:id", //checkUser,
-  //isAdmin,
-  updateProfilController.deleteImgAws
-);
+// router.delete(
+//   "/delete/objet/aws/:id", //checkUser,
+//   //isAdmin,
+//   updateProfilController.deleteImgAws
+// );
 
 module.exports = router;

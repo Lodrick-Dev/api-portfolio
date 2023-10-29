@@ -30,13 +30,13 @@ const uploadNoStock = multer({
 
 //upload first image profil
 //les milieu sont des middleware pour traiter l'image
-router.post(
-  "/upload/aws",
-  checkUser,
-  isAdmin,
-  uploadNoStock.single("imagepost"),
-  addImagePost
-);
+// router.post(
+//   "/upload/aws",
+//   checkUser,
+//   isAdmin,
+//   uploadNoStock.single("imagepost"),
+//   addImagePost
+// );
 
 //link utilisé pour portfolio new design
 router.put(

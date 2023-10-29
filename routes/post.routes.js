@@ -64,46 +64,25 @@ router.post("/add", checkUser, isAdmin, postController.postNew);
 //fonctionne
 // router.put("/upload/:id", upload.single("image"), postController.updateImg);
 
-router.put(
-  "/upload/:id",
-  checkUser,
-  isAdmin,
-  upload.single("image"),
-  postController.updateImg
-);
+// router.put(
+//   "/upload/:id",
+//   checkUser,
+//   isAdmin,
+//   upload.single("image"),
+//   postController.updateImg
+// );
 
 //modification
-router.put("/:id", checkUser, isAdmin, postController.updatePost);
+// router.put("/:id", checkUser, isAdmin, postController.updatePost);
 
 //supprimession
 router.delete("/:id", checkUser, isAdmin, postController.deletePost);
 
-//echec avec google platforme cloud
-// router.post(
-//   "/add/img",
-//   upload.single("bucketimage"),
-//   postController.addImageBucket
-// );
-
-//aws
+//test is ok
 // router.post(
 //   "/add/img/aws",
 //   uploadNoStock.single("bucketimage"),
-//   async (req, res) => {
-//     try {
-//       await postController.addImgAws;
-//     } catch (error) {
-//       console.log(error);
-//       return res.status(400).send("erreur");
-//     }
-//   }
+//   postController.addImgAws
 // );
-
-//test is ok
-router.post(
-  "/add/img/aws",
-  uploadNoStock.single("bucketimage"),
-  postController.addImgAws
-);
 
 module.exports = router;

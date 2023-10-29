@@ -17,7 +17,7 @@ router.get("/all", userController.getAllUsers);
 router.get("/static", userController.getAdmin);
 router.get("/:id", userController.userConnecting);
 router.put("/:id", checkUser, isAdmin, userController.updateUser); //update
-router.delete("/:id", userController.deleteUser); //delete
+router.delete("/:id", checkUser, isAdmin, userController.deleteUser); //delete
 router.put("/init/:email", userController.initPass); //to send mail init
 router.put("/:id/password", checkUser, isAdmin, userController.changePass); //to change pass
 

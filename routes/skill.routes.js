@@ -4,7 +4,7 @@ const { checkUser, isAdmin } = require("../middleware/auth.middleware");
 
 router.get("/all", skillController.getskills);
 router.post("/add", checkUser, isAdmin, skillController.postSkill);
-router.put("/:id", skillController.update);
+router.put("/:id", checkUser, isAdmin, skillController.update);
 router.delete("/:id", checkUser, isAdmin, skillController.delete);
 
 module.exports = router;
