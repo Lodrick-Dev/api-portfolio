@@ -112,6 +112,9 @@ app.use("/post", require("./routes/image.post.routes"));
 //route skills
 app.use("/skill", require("./routes/skill.routes"));
 
+//aperçu site web with url
+app.use("/preview", require("./routes/preview.url.routes"));
+
 //toujours le dernier(le serveur);
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
