@@ -80,7 +80,7 @@ module.exports.loginUser = async (req, res, next) => {
     // res.cookie("jwt", token, {
     //   httpOnly: true,
     //   maxAge,
-    //   domain: ".lodrick-web.xyz",
+    //   domain: ".lodrick-web.fr",
     //   secure: true,
     // });
     //a activé pour le cookie avec vrai nom de domaine

@@ -28,14 +28,31 @@ const app = express();
 // app.use(csrfProtection);//peut-être inutil
 //cors
 // origin: process.env.CLIENT_URL,
+// const corsOption = {
+//   origin: "http://localhost:3000",
+//   credentials: true,
+//   allowedHeaders: ["sessionId", "Content-Type"],
+//   exposedHeaders: ["sessionId"],
+//   methods: "GET,HEAD,PUT,POST,DELETE",
+//   preflightContinue: false,
+//   optionsSuccessStatus: 204,
+// };
+// const allowedOrigins = [process.env.CLIENT_URLWWW, process.env.CLIENT_URL];
+const allowedOrigins = ["http://localhost:3000"];
 const corsOption = {
-  origin: "http://localhost:3000",
   credentials: true,
   allowedHeaders: ["sessionId", "Content-Type"],
   exposedHeaders: ["sessionId"],
   methods: "GET,HEAD,PUT,POST,DELETE",
   preflightContinue: false,
   optionsSuccessStatus: 204,
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("No, not allowed by Cors"));
+    }
+  },
 };
 app.use(cors(corsOption));
 app.use(
