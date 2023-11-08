@@ -7,7 +7,20 @@ module.exports.addImagePost = async (req, res) => {
   //traitement pour vérifié si les élément existent
   //   console.log(req.body);
   // const { name, id } = req.body;
-  const { id } = req.body;
+  console.log(
+    "==================on est ici désormais dans req  =================="
+  );
+  console.log(req);
+  console.log("====================================");
+  console.log(
+    "==================on est ici désormais dans req.file=================="
+  );
+  console.log(req.file);
+  console.log("====================================");
+  const { id, imgpostupload } = req.body;
+  console.log("=========log moi===========================");
+  console.log(imgpostupload);
+  console.log("==========log moi==========================");
   //   return;
   let post;
   try {

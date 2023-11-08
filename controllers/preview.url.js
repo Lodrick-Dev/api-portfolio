@@ -1,25 +1,40 @@
 const puppeteer = require("puppeteer");
+const sharp = require("sharp");
 module.exports.previewUrl = async (req, res) => {
-  const browser = await puppeteer.launch({ headless: "new" });
-  const page = await browser.newPage();
+  const url = req.body.url;
+  const regex = /https?:\/\/[^\s/$.?#].[^\s]*/;
+  console.log(url);
+  if (regex.test(url)) {
+    try {
+      const browser = await puppeteer.launch({ headless: "new" });
+      const page = await browser.newPage();
+      //viewport to pc
+      // await page.setViewport({ width: 1280, height: 1024 });
 
-  // Remplacez 'https://example.com' par l'URL de la page que vous souhaitez capturer
-  //   const url = "https://fleeting.netlify.app";
-  const url = "https://www.lodrick-web.fr";
-  //   const url = "https://developer.mozilla.org/fr/docs/Web/CSS/filter";
-  await page.goto(url);
+      // to viewport mobil
+      await page.setViewport({ width: 375, height: 667 });
 
-  // Capture d'écran en tant que Buffer
-  const screenshotBuffer = await page.screenshot();
+      await page.goto(url);
 
-  // Convertir le Buffer en une chaîne de données base64
-  //   const screenshotDataUrl = `data:image/png;base64,${screenshotBuffer.toString(
-  //     "base64"
-  //   )}`;
+      // Capture d'écran en tant que Buffer
+      const screenshotBuffer = await page.screenshot({ fullPage: true });
 
-  //   res.json({ screenshot: screenshotDataUrl });
-  res.type("image/png");
-  res.send(screenshotBuffer);
+      //resize img
+      const resizeScreenShotBuffer = await sharp(screenshotBuffer)
+        .resize(1080, 1080)
+        .toBuffer();
 
-  await browser.close();
+      //convertir en base64
+      const base64Image = resizeScreenShotBuffer.toString("base64");
+      res.send(`data:image/png;base64,${base64Image}`);
+
+      await browser.close(); // fermer le navigateur ouvert, important
+    } catch (error) {
+      console.log("Juste erreur");
+      console.log(error);
+    }
+  } else {
+    console.log("Erreur lien ici");
+    return res.status(200).json({ message: "Erreur : lien incorrect" });
+  }
 };

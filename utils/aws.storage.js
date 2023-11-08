@@ -43,6 +43,9 @@ module.exports.deleteImageProfilS3 = async (id) => {
 
 //pour upload first image POSTS
 module.exports.uploadImgPostToS3 = async (file, id) => {
+  console.log("==================on est la ==================");
+  console.log(file);
+  console.log("====================================");
   //redimensionné
   const resizeImgPost = await sharp(file.buffer).resize(1080, 1080).toBuffer();
   const idString = id.toString();
