@@ -1,5 +1,7 @@
 const PostModel = require("../models/post.model");
 const { uploadImgPostToS3 } = require("../utils/aws.storage");
+
+//n'est utilisé depuis 08/11/2023
 module.exports.addImagePost = async (req, res) => {
   //   return res.status(200).send("blbabla");
   //traitement pour vérifié si les élément existent
