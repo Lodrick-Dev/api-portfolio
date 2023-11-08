@@ -39,7 +39,6 @@ const uploadNoStock = multer({
 // );
 
 //link utilisé pour portfolio new design
-//08/11/2023 n'est plus utilisé
 router.put(
   "/update/img/:id",
   checkUser,
