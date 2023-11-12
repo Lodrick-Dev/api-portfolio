@@ -17,8 +17,8 @@ module.exports.addImagePost = async (req, res) => {
   //traitement pour s3 et envoyé le lien dans la data base
   //   return res.status(200).send("error ici");
   try {
-    await uploadImgPostToS3(req.file, id);
-    const nameImage = `https://toapilod.s3.eu-central-1.amazonaws.com/api-projet-${id}.jpg`;
+    await uploadImgPostToS3(req.file, post._id);
+    const nameImage = `https://toapilod.s3.eu-central-1.amazonaws.com/api-projet-${post._id}.jpg`;
     if (!post.image)
       return res
         .status(200)
