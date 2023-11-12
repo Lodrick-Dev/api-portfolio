@@ -14,6 +14,7 @@ module.exports.getAllUsers = async (req, res) => {
 module.exports.getAdmin = async (req, res) => {
   const user = await UserModel.findOne({ role: 1 })
     .select("-password")
+    .select("-email")
     .select("-role");
   if (user) {
     res.status(200).json(user);

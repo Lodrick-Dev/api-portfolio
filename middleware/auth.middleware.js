@@ -56,6 +56,7 @@ module.exports.requireAuth = (req, res, next) => {
         //ici il y a next() car token existe
         // console.log(decodedToken.id);
         req.user = await UserModel.findById(decodedToken.id)
+          .select("-email")
           .select("-password")
           .select("-role");
         res.status(200).send(req.user);
