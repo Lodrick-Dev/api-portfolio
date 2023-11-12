@@ -1,3 +1,4 @@
+////depuis vps
 const puppeteer = require("puppeteer");
 const sharp = require("sharp");
 module.exports.previewUrl = async (req, res) => {
@@ -6,7 +7,11 @@ module.exports.previewUrl = async (req, res) => {
   console.log(url);
   if (regex.test(url)) {
     try {
+      //code quand api n'est pas sur VPS
       const browser = await puppeteer.launch({ headless: "new" });
+
+      //Code quand api est sur VPS
+      // const browser = await puppeteer.launch({ headless: "new", args: ['--no-sandbox'] });
       const page = await browser.newPage();
       //viewport to pc
       // await page.setViewport({ width: 1280, height: 1024 });
