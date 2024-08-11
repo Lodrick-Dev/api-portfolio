@@ -36,10 +36,14 @@ module.exports.contactClient = async (req, res, next) => {
     <p>Message : ${text}</p>
   `,
     });
+    return res.status(200).json({ message: "Message envoyé ! " });
   } catch (error) {
     console.log(error);
     console.log(
       "une erreur est survenue lors de l'envoie du mail pour dire que subject et text est introuvable"
     );
+    return res
+      .status(200)
+      .json({ message: "Erreur : Une erreur est survenue" });
   }
 };
