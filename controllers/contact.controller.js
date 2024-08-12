@@ -47,3 +47,29 @@ module.exports.contactClient = async (req, res, next) => {
       .json({ message: "Erreur : Une erreur est survenue" });
   }
 };
+
+module.exports.subscribeCm = async (req, res, next) => {
+  const { email, hidden } = req.body;
+  if (!email) return res.status(200).json({ error: "Un email est requis" });
+  if (hidden) return res.status(200).json({ error: "Erreur hidden" });
+  try {
+    await resend.emails.send({
+      from: "onboarding@resend.dev",
+      to: "nisethscary@gmail.com",
+      subject: "Inscription Community Manager",
+      html: `
+    <h1>Inscription</h1>
+    <p>Un nouveau inscrit : ${email}</p>
+  `,
+    });
+    return res.status(200).json({ message: "Inscription réussie " });
+  } catch (error) {
+    console.log(error);
+    console.log(
+      "une erreur est survenue lors de l'envoie du mail pour dire que subject et text est introuvable"
+    );
+    return res
+      .status(200)
+      .json({ message: "Erreur : Une erreur est survenue" });
+  }
+};
