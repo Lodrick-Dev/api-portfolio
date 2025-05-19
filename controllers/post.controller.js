@@ -20,7 +20,16 @@ module.exports.getAllPosts = async (req, res) => {
 
 //post an post "contents/add"
 module.exports.postNew = async (req, res) => {
-  const { posterid, projet, content, lien, skills, img } = req.body;
+  const {
+    posterid,
+    projet,
+    content,
+    lien,
+    lienGitApi,
+    lienGitFront,
+    skills,
+    img,
+  } = req.body;
   if (!posterid) {
     return res.status(200).json({ error: "Erreur: Utilisateur inconnu" });
   }
@@ -41,6 +50,8 @@ module.exports.postNew = async (req, res) => {
       projet,
       content,
       lien,
+      lienGitApi,
+      lienGitFront,
       skills,
     });
     if (img) {

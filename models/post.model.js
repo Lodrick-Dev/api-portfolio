@@ -28,6 +28,14 @@ const postSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    lienGitApi: {
+      type: String,
+      unique: true,
+    },
+    lienGitFront: {
+      type: String,
+      unique: true,
+    },
     skills: {
       type: Array,
       required: true,
